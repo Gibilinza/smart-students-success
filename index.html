@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Smart Student Coach</title>
+<style>
+body{font-family:Arial;background:linear-gradient(to right,#fad97e,#80ffdb);margin:0;padding:20px;}
+.container{max-width:420px;margin:auto;}
+.card{background:white;padding:15px;border-radius:15px;margin-bottom:15px;box-shadow:0px 4px 10px rgba(0,0,0,0.2);}
+h2{text-align:center;}
+input,button{width:100%;padding:5px;border-radius:8px;margin:5px 0;border:1px solid #aaa;}
+button{background:#9e9e2f;color:white;font-weight:bold;border:none;}
+.bar{background:#ddd;border-radius:20px;margin-top:10px;}
+.fill{height:15px;width:0;border-radius:20px;background:#37b24d;}
+.dark-mode .box {
+            background: #2b2b2b;
+            box-shadow: 0px 0px 10px black;
+        }
+        .box {
+            background: white;
+            width: 350px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            transition: 0.3s;
+        }
+ body {
+            font-family: Arial;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .box {
+            background: white;
+            width: 350px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            transition: 0.3s;
+        }
+        input, button {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+        }
+        ul { text-align: left; }
+
+        /* Dark mode styles */
+        .dark-mode {
+            background: #1b1b1b;
+            color: white;
+        }
+        .dark-mode .box {
+            background: #2b2b2b;
+            box-shadow: 0px 0px 10px black;
+        }       
+#quote{text-align:center;font-size:14px;}
+</style>
+</head>
+<body>
+  <center><div>
+<h1>🎓 Smart Student Success Coach</h1></div></center>
+<div id="app" class="container">
+<p id="quote"></p>
+  <div class="box">
+<h2>🌱 Failure Recovery Coach</h2>
+<input id="name" placeholder="Your Name">
+<input id="marks" type="number" placeholder="Marks">
+<input id="total" type="number" placeholder="Total">
+<button onclick="recover()">Recover</button>
+<div class="bar"><div id="fill" class="fill"></div></div>
+<p id="score"></p>
+</div>
+  <div class="box">
+<h2>⏳ Exam Countdown</h2>
+<input id="exam" placeholder="Exam Name">
+<input id="date" type="date">
+<button onclick="addExam()">Add Exam</button>
+<ul id="list"></ul>
+</div>
+<div>
+<h2>📘 Smart Student Success Coach</h2>
+</div>
+    <div class="box">
+        <h3>Add Daily Task</h3>
+        <input type="text" id="task" placeholder="Enter task...">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+    <div class="box">
+        <h3>Your Goal Progress</h3>
+        <p id="progress">0% completed</p>
+    </div>
+</div>
+<center>
+
+  <button onclick="toggleMode()" style="width:200px; padding:8px;">🌙 Dark / ☀️ Light</button>
+</div>
+</center>
+</div>
+<script>
+  let tasks = 0, completed = 0;
+    let dark = false;
+let quotes=["Believe in yourself","Failure is not final","Rise again stronger","Work smart","Never give up"];
+document.getElementById("quote").innerHTML = quotes[Math.floor(Math.random()*quotes.length)];
+
+function recover(){
+  let m=marks.value,t=total.value;
+  if(!m||!t){alert("Enter marks");return;}
+  let p=(m/t)*100;
+  fill.style.width=p+"%";
+  localStorage.setItem("score",p);
+  let msg = p>75?"Excellent 🔥":p>50?"Good 👍":"Don't give up 🌱";
+  score.innerHTML="Score: "+p.toFixed(0)+"%<br>"+msg;
+}
+
+function addExam(){
+  let e=exam.value,d=date.value;
+  let days=Math.ceil((new Date(d)-new Date())/(1000*60*60*24));
+  list.innerHTML += "<li>"+e+" - "+days+" days</li>";
+}
+
+function toggleMode() {
+   dark = !dark;
+    if (dark) {
+      document.body.classList.add("dark-mode");
+     } else {
+      document.body.classList.remove("dark-mode");
+     }
+      }
+    function addTask() {
+        let taskText = document.getElementById("task").value;
+        if (taskText === "") return;
+
+        tasks++;
+        let li = document.createElement("li");
+        li.innerHTML = taskText + " ✔️";
+        document.getElementById("taskList").appendChild(li);
+        document.getElementById("task").value = "";
+
+        completed++;
+        updateProgress();
+    }
+
+    function updateProgress() {
+        let percent = Math.round((completed / tasks) * 100);
+        document.getElementById("progress").innerHTML = percent + "% completed";
+    }
+</script>
+<script src="https://static.zohocdn.com/catalyst/sdk/js/4.0.0/catalystWebSDK.js"></script>"
+<script>catalydt.auth.signIn("pavithravenket176@gmail.com");</script>
+</body>
+</html>
